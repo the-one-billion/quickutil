@@ -24,11 +24,11 @@ export async function generateMetadata({
 
   return {
     title: `${tool.name} – Free Online Tool`,
-    description: tool.description,
+    description: tool.metaDescription ?? tool.description,
     keywords: tool.keywords,
     openGraph: {
-      title: `${tool.name} | UtilityKit`,
-      description: tool.description,
+      title: `${tool.name} | QuickUtil`,
+      description: tool.metaDescription ?? tool.description,
     },
   };
 }
