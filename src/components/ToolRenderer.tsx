@@ -8,14 +8,51 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-// Register tool components here as you build them.
-// Each is its own JS chunk — only downloaded when the user visits that tool.
 const toolComponents: Record<string, React.ComponentType> = {
-  "pdf-merge":      dynamic(() => import("@/components/tools/PDFMerge"),      { ssr: false }),
-  "image-compress": dynamic(() => import("@/components/tools/ImageCompress"), { ssr: false }),
-  "bmi-calculator": dynamic(() => import("@/components/tools/BMICalculator"), { ssr: false }),
-  // Add more as you build them:
-  // "qr-generator":   dynamic(() => import("@/components/tools/QRGenerator"),  { ssr: false }),
+  // PDF
+  "pdf-merge":      dynamic(() => import("@/components/tools/PDFMerge"),             { ssr: false }),
+  "pdf-split":      dynamic(() => import("@/components/tools/PDFSplit"),             { ssr: false }),
+  "images-to-pdf":  dynamic(() => import("@/components/tools/ImagesToPDF"),          { ssr: false }),
+
+  // Image
+  "image-compress": dynamic(() => import("@/components/tools/ImageCompress"),        { ssr: false }),
+  "image-resize":   dynamic(() => import("@/components/tools/ImageResize"),          { ssr: false }),
+  "image-convert":  dynamic(() => import("@/components/tools/ImageConvert"),         { ssr: false }),
+  "image-crop":     dynamic(() => import("@/components/tools/ImageCrop"),            { ssr: false }),
+  "image-watermark":dynamic(() => import("@/components/tools/ImageWatermark"),       { ssr: false }),
+
+  // Calculator
+  "bmi-calculator":          dynamic(() => import("@/components/tools/BMICalculator"),          { ssr: false }),
+  "loan-calculator":         dynamic(() => import("@/components/tools/LoanCalculator"),         { ssr: false }),
+  "percentage-calculator":   dynamic(() => import("@/components/tools/PercentageCalculator"),   { ssr: false }),
+  "age-calculator":          dynamic(() => import("@/components/tools/AgeCalculator"),          { ssr: false }),
+  "tip-calculator":          dynamic(() => import("@/components/tools/TipCalculator"),          { ssr: false }),
+  "scientific-calculator":   dynamic(() => import("@/components/tools/ScientificCalculator"),   { ssr: false }),
+  "pomodoro":                dynamic(() => import("@/components/tools/PomodoroTimer"),          { ssr: false }),
+
+  // Converter
+  "unit-converter":  dynamic(() => import("@/components/tools/UnitConverter"),       { ssr: false }),
+  "color-converter": dynamic(() => import("@/components/tools/ColorConverter"),      { ssr: false }),
+  "base64":          dynamic(() => import("@/components/tools/Base64Tool"),          { ssr: false }),
+
+  // Text
+  "word-counter":  dynamic(() => import("@/components/tools/WordCounter"),           { ssr: false }),
+  "case-converter":dynamic(() => import("@/components/tools/CaseConverter"),         { ssr: false }),
+  "text-diff":     dynamic(() => import("@/components/tools/TextDiff"),              { ssr: false }),
+  "lorem-ipsum":   dynamic(() => import("@/components/tools/LoremIpsum"),            { ssr: false }),
+
+  // Generator
+  "qr-generator":    dynamic(() => import("@/components/tools/QRGenerator"),        { ssr: false }),
+  "uuid-generator":  dynamic(() => import("@/components/tools/UUIDGenerator"),      { ssr: false }),
+  "color-palette":   dynamic(() => import("@/components/tools/ColorPalette"),       { ssr: false }),
+
+  // Security
+  "password-generator": dynamic(() => import("@/components/tools/PasswordGenerator"), { ssr: false }),
+  "hash-generator":     dynamic(() => import("@/components/tools/HashGenerator"),      { ssr: false }),
+
+  // Developer
+  "json-formatter": dynamic(() => import("@/components/tools/JSONFormatter"),       { ssr: false }),
+  "regex-tester":   dynamic(() => import("@/components/tools/RegexTester"),         { ssr: false }),
 };
 
 interface ToolRendererProps {
