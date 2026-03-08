@@ -118,10 +118,12 @@ export default function ImageCompress() {
     results.forEach(({ compressedBlob, originalFile }) => {
       const ext  = originalFile.name.split(".").pop() ?? "jpg";
       const name = originalFile.name.replace(`.${ext}`, `_compressed.${ext}`);
+      const blobUrl = URL.createObjectURL(compressedBlob);
       const a    = document.createElement("a");
-      a.href     = URL.createObjectURL(compressedBlob);
+      a.href     = blobUrl;
       a.download = name;
       a.click();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
     });
   };
 

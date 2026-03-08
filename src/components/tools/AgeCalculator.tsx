@@ -97,7 +97,8 @@ function computeAge(dob: Date, asOf: Date): AgeResult {
     nextBD = new Date(thisYear + 1, dob.getMonth(), dob.getDate());
   }
   const nextBirthday = Math.round((nextBD.getTime() - asOfMidnight.getTime()) / msPerDay);
-  const isBirthdayToday = nextBirthday === 0 || nextBirthday === 365 || nextBirthday === 366;
+  const isBirthdayToday =
+    dob.getMonth() === asOf.getMonth() && dob.getDate() === asOf.getDate();
 
   const dayBorn = DAYS_OF_WEEK[dob.getDay()];
   const zodiac  = getZodiac(dob.getMonth() + 1, dob.getDate());

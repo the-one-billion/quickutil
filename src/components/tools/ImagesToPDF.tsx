@@ -213,7 +213,7 @@ export default function ImagesToPDF() {
 
       const pdfBytes = await pdfDoc.save();
       const blob     = new Blob([pdfBytes.buffer as ArrayBuffer], { type: "application/pdf" });
-      setPdfUrl(URL.createObjectURL(blob));
+      setPdfUrl((prev) => { if (prev) URL.revokeObjectURL(prev); return URL.createObjectURL(blob); });
       setStatus("done");
       setProgress(100);
     } catch (err) {

@@ -54,6 +54,10 @@ export default function ImageConvert() {
 
   const loadImage = useCallback((file: File) => {
     if (!file.type.startsWith("image/")) return;
+    setSource((prev) => {
+      if (prev?.url) URL.revokeObjectURL(prev.url);
+      return prev;
+    });
     const url = URL.createObjectURL(file);
     const img = new window.Image();
     img.onload = () => {

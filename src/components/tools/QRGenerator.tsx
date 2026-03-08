@@ -55,6 +55,7 @@ export default function QRGenerator() {
       a.download = "qrcode.png";
       a.click();
     };
+    img.onerror = () => URL.revokeObjectURL(url);
     img.src = url;
   }, [size]);
 
