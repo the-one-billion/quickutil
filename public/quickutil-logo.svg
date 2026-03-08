@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" fill="none" role="img" aria-label="QuickUtil logo">
+  <defs>
+    <!-- Ring: dark navy (top-left) → electric blue (bottom-right) -->
+    <linearGradient id="rg" x1="6" y1="6" x2="106" y2="106" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#091a6a"/>
+      <stop offset="50%"  stop-color="#1140c2"/>
+      <stop offset="100%" stop-color="#1c5af6"/>
+    </linearGradient>
+
+    <!-- Bolt: near-white top → sky blue → deep blue -->
+    <linearGradient id="bg" x1="54" y1="30" x2="54" y2="74" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#e0f4ff"/>
+      <stop offset="32%"  stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <!-- Soft glow behind the bolt -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!--
+    Q RING
+    ─────────────────────────────────────────────────────────────────
+    Circle: cx=52 cy=50 r=27  stroke-width=14
+    Circumference C = 2π × 27 ≈ 169.65
+
+    Gap: ~20 px ≈ 42° of arc, centered at 45° CW from 3-o'clock
+         (= the 4:30 / bottom-right position)
+
+    dasharray  = "150 20"   (150 solid + 20 gap = 170 ≈ C)
+    dashoffset = 139        (shifts pattern so gap lands at 4:30)
+    ─────────────────────────────────────────────────────────────────
+  -->
+  <circle
+    cx="52" cy="50" r="27"
+    stroke="url(#rg)"
+    stroke-width="14"
+    stroke-linecap="round"
+    stroke-dasharray="150 20"
+    stroke-dashoffset="139"
+  />
+
+  <!--
+    Q TAIL
+    Exits the ring at 45° (4:30), extends diagonally to bottom-right.
+    Start is roughly at the outer-ring edge at 45°:
+      x = 52 + 34×cos45° ≈ 76,  y = 50 + 34×sin45° ≈ 74
+    End extends further in the same 45° direction.
+  -->
+  <line
+    x1="73" y1="71"
+    x2="96" y2="95"
+    stroke="url(#rg)"
+    stroke-width="14"
+    stroke-linecap="round"
+  />
+
+  <!--
+    LIGHTNING BOLT
+    Tighter, more vertical bolt than the original — scales better at small sizes.
+    All 6 points fit within the inner donut hole (r≈20 from center 52,50).
+    Two-triangle zigzag shape:
+      Top point → sweep left to mid-notch → bridge right → sweep left to bottom
+  -->
+  <path
+    d="M 58,31 L 43,54 L 54,54 L 47,71 L 69,48 L 58,48 Z"
+    fill="url(#bg)"
+    filter="url(#glow)"
+  />
+</svg>
