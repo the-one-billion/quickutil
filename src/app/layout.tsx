@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "AuHLcJfWeP7R5_Tm94r5soVWZW37K84ahu1gr6bhGtM",
+  },
 };
 
 export const viewport: Viewport = {
@@ -78,12 +81,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google AdSense — replace ca-pub-XXXXXXXX with your publisher ID */}
-        {/* <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
-          crossOrigin="anonymous"
-        /> */}
+        {/* Google Analytics GA4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HRZ61PLE02" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-HRZ61PLE02');`,
+          }}
+        />
+        {/* Google AdSense — uncomment and replace ca-pub-XXXXXXXX when approved */}
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossOrigin="anonymous" /> */}
       </head>
       <body className={`${inter.variable} ${manrope.variable} ${jetbrains.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
