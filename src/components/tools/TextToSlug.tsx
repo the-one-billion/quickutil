@@ -57,11 +57,11 @@ const STOP_WORDS = new Set([
 
 // ── Slug logic ────────────────────────────────────────────────────────────────
 
-type Separator = "-" | "_" | "." | "";
+type Separator = "-" | "_" | "." | "none";
 type MaxLength = "0" | "50" | "75" | "100";
 
 interface SlugOptions {
-  separator: Separator;
+  separator: "-" | "_" | "." | "";
   maxLength: MaxLength;
   preserveNumbers: boolean;
   stripStopWords: boolean;
@@ -142,7 +142,7 @@ const SEP_OPTIONS: { value: Separator; label: string }[] = [
   { value: "-", label: "Hyphen  —  hello-world" },
   { value: "_", label: "Underscore  —  hello_world" },
   { value: ".", label: "Period  —  hello.world" },
-  { value: "", label: "None  —  helloworld" },
+  { value: "none", label: "None  —  helloworld" },
 ];
 
 const MAX_OPTIONS: { value: MaxLength; label: string }[] = [
@@ -162,7 +162,8 @@ export default function TextToSlug() {
 
   const { copiedKey, copy } = useCopy();
 
-  const opts: SlugOptions = { separator, maxLength, preserveNumbers, stripStopWords };
+  const sepChar = separator === "none" ? "" : separator;
+  const opts: SlugOptions = { separator: sepChar as SlugOptions["separator"], maxLength, preserveNumbers, stripStopWords };
 
   const slug = useMemo(() => toSlug(title, opts), [title, opts]);
 
@@ -206,7 +207,7 @@ export default function TextToSlug() {
                 </SelectTrigger>
                 <SelectContent>
                   {SEP_OPTIONS.map((o) => (
-                    <SelectItem key={o.value === "" ? "none" : o.value} value={o.value === "" ? "" : o.value}>
+                    <SelectItem key={o.value} value={o.value}>
                       {o.label}
                     </SelectItem>
                   ))}
