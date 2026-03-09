@@ -9,9 +9,9 @@ import { tools } from "@/lib/tools";
 import AdSlot from "@/components/AdSlot";
 
 export const metadata: Metadata = {
-  title: "UtilityKit – 30+ Free Browser-Based Tools",
+  title: "UtilityKit – 40+ Free Browser-Based Tools",
   description:
-    "PDF merge, image compress, BMI calculator, QR codes and 30+ more tools — all free, all client-side. Your files never leave your browser.",
+    "PDF merge, image compress, BMI calculator, QR codes and 40+ more tools — all free, all client-side. Your files never leave your browser.",
 };
 
 const featuredSlugs = ["pdf-merge", "image-compress", "qr-generator", "bmi-calculator"];
@@ -62,7 +62,7 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-3xl px-4">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Zap className="h-3.5 w-3.5" />
-            30+ Free Tools · 100% Client-Side
+            40+ Free Tools · 100% Client-Side
           </div>
 
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
@@ -153,7 +153,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 text-center">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {[
-            { value: "30+",  label: "Free Tools"       },
+            { value: "40+",  label: "Free Tools"       },
             { value: "0",    label: "Uploads Required"  },
             { value: "100%", label: "Client-Side"       },
             { value: "∞",   label: "Files Processed"   },

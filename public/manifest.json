@@ -1,7 +1,7 @@
 {
   "name": "QuickUtil – Free Online Tools",
   "short_name": "QuickUtil",
-  "description": "30+ free browser-based tools: PDF merge, image compress, BMI calculator, QR generator and more.",
+  "description": "40+ free browser-based tools: PDF merge, image compress, BMI calculator, QR generator and more.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

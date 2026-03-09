@@ -1,7 +1,34 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(npm show next version)",
+      "Bash(npm install next@latest eslint-config-next@latest)",
+      "Bash(npm show next@15 version)",
+      "Bash(npm show next versions --json)",
+      "Bash(python3 -c \"import sys,json; vs=[v for v in json.load\\(sys.stdin\\) if v.startswith\\(''15.''\\)]; print\\(''Latest 15.x:'', vs[-1]\\)\")",
+      "Bash(npm install next@15.5.12 eslint-config-next@15.5.12)",
+      "Bash(git add package.json package-lock.json tsconfig.json)",
+      "Bash(git commit -m \"fix: upgrade Next.js to 15.5.12 \\(security patch\\) + clear build cache\")",
+      "Bash(git push origin main)",
+      "Bash(cp \"/Users/devsid/Desktop/Screenshot 2026-03-08 at 7.19.26 PM.jpg\" \"/tmp/cf_dns.jpg\")",
+      "Bash(python3 -c \"import shutil; shutil.copy\\(''/Users/devsid/Desktop/Screenshot 2026-03-08 at 7.19.26 PM.jpg'', ''/tmp/cf_dns.jpg''\\)\")",
+      "Bash(node -e \"console.log\\(process.version\\)\")",
+      "Bash(npm list sharp)",
+      "Bash(node -e \":*)",
+      "Bash(npm list png-to-ico)",
+      "Bash(npx --yes png-to-ico public/favicon-32.png)",
+      "Bash(git add public/apple-touch-icon.png public/favicon.ico public/icon-192.png public/icon-512.png public/manifest.json src/app/privacy/ src/app/terms/)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx tsc --noEmit --strict)",
+      "Bash(git add src/app/layout.tsx)",
+      "Bash(node /tmp/gen-og.mjs)",
+      "Bash(git add public/og-image.png)",
+      "Bash(git add src/lib/tools.ts src/app/tools/[slug]/page.tsx)",
+      "Bash(git add src/components/tools/)",
+      "WebSearch"
     ]
   }
 }

@@ -6,7 +6,10 @@ export type ToolCategory =
   | "Converter"
   | "Generator"
   | "Security"
-  | "Developer";
+  | "Developer"
+  | "Health"
+  | "Finance"
+  | "Math";
 
 export interface Tool {
   slug: string;
@@ -327,6 +330,174 @@ export const tools: Tool[] = [
     icon: "Zap",
     keywords: ["css", "minify", "compress", "developer"],
   },
+
+  // ─── Converter (new) ─────────────────────────────────────────────────────
+  {
+    slug: "csv-json",
+    name: "CSV ↔ JSON Converter",
+    description: "Convert CSV to JSON or JSON to CSV instantly.",
+    metaDescription: "Free CSV to JSON converter and JSON to CSV converter online. Paste your data, choose direction, copy or download the result. No upload, fully in-browser.",
+    category: "Converter",
+    icon: "Table",
+    keywords: ["csv", "json", "convert", "data", "table"],
+    isNew: true,
+  },
+  {
+    slug: "roman-numeral",
+    name: "Roman Numeral Converter",
+    description: "Convert between Roman numerals and Arabic numbers.",
+    metaDescription: "Free Roman numeral converter — convert numbers to Roman numerals (I, V, X, L, C, D, M) and back. Supports numbers from 1 to 3,999 instantly.",
+    category: "Converter",
+    icon: "Type",
+    keywords: ["roman", "numeral", "convert", "number"],
+    isNew: true,
+  },
+  {
+    slug: "number-to-words",
+    name: "Number to Words",
+    description: "Convert numbers into English words for cheques and documents.",
+    metaDescription: "Convert numbers to words in English online — useful for writing cheques, legal documents, and invoices. Supports numbers up to trillions.",
+    category: "Converter",
+    icon: "Spell",
+    keywords: ["number", "words", "convert", "spell", "cheque"],
+    isNew: true,
+  },
+  {
+    slug: "binary-hex",
+    name: "Binary / Hex / Octal Converter",
+    description: "Convert between binary, hexadecimal, octal, and decimal.",
+    metaDescription: "Free number base converter — convert between binary (base 2), octal (base 8), decimal (base 10), and hexadecimal (base 16) instantly.",
+    category: "Developer",
+    icon: "Binary",
+    keywords: ["binary", "hex", "hexadecimal", "octal", "decimal", "base", "convert"],
+    isNew: true,
+  },
+  {
+    slug: "markdown-html",
+    name: "Markdown to HTML",
+    description: "Convert Markdown to clean HTML with live preview.",
+    metaDescription: "Free Markdown to HTML converter with live preview — paste Markdown, see rendered HTML instantly. Copy raw HTML or preview output. No install needed.",
+    category: "Developer",
+    icon: "FileCode",
+    keywords: ["markdown", "html", "convert", "preview", "md"],
+    isNew: true,
+  },
+  {
+    slug: "keyword-density",
+    name: "Keyword Density Checker",
+    description: "Analyse keyword frequency and density in any text.",
+    metaDescription: "Free keyword density checker — paste any text and instantly see word frequency, density %, and top keywords. Essential for SEO content optimization.",
+    category: "Text",
+    icon: "BarChart2",
+    keywords: ["keyword", "density", "seo", "frequency", "text", "analysis"],
+    isNew: true,
+  },
+  {
+    slug: "fake-data",
+    name: "Fake Data Generator",
+    description: "Generate realistic fake names, emails, addresses, and more.",
+    metaDescription: "Free fake data generator — generate realistic test data: names, emails, phone numbers, addresses, and UUIDs. Perfect for developers and QA testers.",
+    category: "Generator",
+    icon: "UserRound",
+    keywords: ["fake", "data", "generator", "test", "mock", "name", "email"],
+    isNew: true,
+  },
+  {
+    slug: "email-validator",
+    name: "Email Validator",
+    description: "Validate email addresses for correct format instantly.",
+    metaDescription: "Free email validator — check if an email address is correctly formatted. Validate single or bulk email addresses instantly. No sign-up required.",
+    category: "Developer",
+    icon: "Mail",
+    keywords: ["email", "validate", "check", "format", "verify"],
+    isNew: true,
+  },
+  {
+    slug: "barcode-generator",
+    name: "Barcode Generator",
+    description: "Generate Code128, EAN-13, and UPC barcodes instantly.",
+    metaDescription: "Free barcode generator — create Code128, EAN-13, and UPC-A barcodes online. Download as PNG or SVG. No registration, runs entirely in your browser.",
+    category: "Generator",
+    icon: "ScanBarcode",
+    keywords: ["barcode", "ean", "upc", "code128", "generator"],
+    isNew: true,
+  },
+
+  // ─── Math ────────────────────────────────────────────────────────────────
+  {
+    slug: "statistics-calculator",
+    name: "Statistics Calculator",
+    description: "Calculate mean, median, mode, standard deviation, and more.",
+    metaDescription: "Free statistics calculator — compute mean, median, mode, range, variance, standard deviation, and more from a list of numbers. Instant results.",
+    category: "Math",
+    icon: "Sigma",
+    keywords: ["statistics", "mean", "median", "mode", "standard deviation", "variance"],
+    isNew: true,
+  },
+
+  // ─── Finance ─────────────────────────────────────────────────────────────
+  {
+    slug: "compound-interest",
+    name: "Compound Interest Calculator",
+    description: "Calculate compound interest growth with charts.",
+    metaDescription: "Free compound interest calculator — see how investments grow over time with compound interest. Enter principal, rate, frequency, and years to visualise returns.",
+    category: "Finance",
+    icon: "TrendingUp",
+    keywords: ["compound interest", "investment", "savings", "finance", "calculator"],
+    isNew: true,
+  },
+  {
+    slug: "investment-return",
+    name: "Investment Return Calculator",
+    description: "Calculate ROI and total returns on any investment.",
+    metaDescription: "Free investment return calculator — calculate ROI, total return, and annualised return on any investment. Compare simple vs compound growth instantly.",
+    category: "Finance",
+    icon: "DollarSign",
+    keywords: ["investment", "roi", "return", "finance", "calculator"],
+    isNew: true,
+  },
+  {
+    slug: "grade-calculator",
+    name: "Grade / GPA Calculator",
+    description: "Calculate weighted grades and GPA for any course.",
+    metaDescription: "Free grade and GPA calculator — add assignments with weights to compute your overall grade. Supports letter grades, percentages, and GPA on 4.0 scale.",
+    category: "Calculator",
+    icon: "GraduationCap",
+    keywords: ["grade", "gpa", "calculator", "weighted", "student", "school"],
+    isNew: true,
+  },
+
+  // ─── Health ──────────────────────────────────────────────────────────────
+  {
+    slug: "calorie-calculator",
+    name: "Calorie & Macro Calculator",
+    description: "Calculate daily calorie needs and macronutrient ratios.",
+    metaDescription: "Free calorie and macro calculator — find your TDEE (total daily energy expenditure), ideal protein, carb, and fat intake based on your goal and activity level.",
+    category: "Health",
+    icon: "Flame",
+    keywords: ["calorie", "macro", "tdee", "protein", "carbs", "fat", "diet", "fitness"],
+    isNew: true,
+  },
+  {
+    slug: "due-date-calculator",
+    name: "Pregnancy Due Date Calculator",
+    description: "Calculate your pregnancy due date and week-by-week milestones.",
+    metaDescription: "Free pregnancy due date calculator — enter your last period date or conception date to find your due date, current week, trimester, and key milestones.",
+    category: "Health",
+    icon: "Baby",
+    keywords: ["pregnancy", "due date", "calculator", "trimester", "weeks pregnant"],
+    isNew: true,
+  },
+  {
+    slug: "date-difference",
+    name: "Date Difference Calculator",
+    description: "Calculate the exact difference between two dates.",
+    metaDescription: "Free date difference calculator — find the exact number of days, weeks, months, and years between any two dates. Great for deadlines, anniversaries, and contracts.",
+    category: "Calculator",
+    icon: "CalendarRange",
+    keywords: ["date", "difference", "days", "between", "calculator"],
+    isNew: true,
+  },
 ];
 
 export const categories: ToolCategory[] = [
@@ -338,6 +509,9 @@ export const categories: ToolCategory[] = [
   "Generator",
   "Security",
   "Developer",
+  "Health",
+  "Finance",
+  "Math",
 ];
 
 export const categoryColors: Record<ToolCategory, string> = {
@@ -349,6 +523,9 @@ export const categoryColors: Record<ToolCategory, string> = {
   Generator:  "bg-pink-100 text-pink-700 dark:bg-pink-900/30 dark:text-pink-400",
   Security:   "bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400",
   Developer:  "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  Health:     "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+  Finance:    "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+  Math:       "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400",
 };
 
 export function getToolBySlug(slug: string): Tool | undefined {

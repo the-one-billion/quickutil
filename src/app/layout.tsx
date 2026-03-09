@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | QuickUtil",
   },
   description:
-    "30+ free browser-based tools: PDF merge, image compress, BMI calculator, QR generator, and more. No upload, 100% private.",
+    "40+ free browser-based tools: PDF merge, image compress, BMI calculator, QR generator, and more. No upload, 100% private.",
   keywords: [
     "free online tools", "pdf merge", "image compressor", "bmi calculator",
     "qr code generator", "unit converter", "word counter", "password generator",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://quickutil.io",
     siteName: "QuickUtil",
-    title: "QuickUtil – 30+ Free Browser Tools",
+    title: "QuickUtil – 40+ Free Browser Tools",
     description: "PDF, Image, Calculator & more — 100% client-side, no uploads needed.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },

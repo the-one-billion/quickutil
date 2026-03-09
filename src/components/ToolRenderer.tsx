@@ -53,6 +53,32 @@ const toolComponents: Record<string, React.ComponentType> = {
   // Developer
   "json-formatter": dynamic(() => import("@/components/tools/JSONFormatter"),       { ssr: false }),
   "regex-tester":   dynamic(() => import("@/components/tools/RegexTester"),         { ssr: false }),
+
+  // Converter (new)
+  "csv-json":          dynamic(() => import("@/components/tools/CSVtoJSON"),           { ssr: false }),
+  "binary-hex":        dynamic(() => import("@/components/tools/BinaryHex"),           { ssr: false }),
+
+  // Text (new)
+  "markdown-html":     dynamic(() => import("@/components/tools/MarkdownHTML"),        { ssr: false }),
+  "keyword-density":   dynamic(() => import("@/components/tools/KeywordDensity"),      { ssr: false }),
+  "email-validator":   dynamic(() => import("@/components/tools/EmailValidator"),      { ssr: false }),
+
+  // Generator (new)
+  "roman-numeral":     dynamic(() => import("@/components/tools/RomanNumeral"),        { ssr: false }),
+  "number-to-words":   dynamic(() => import("@/components/tools/NumberToWords"),       { ssr: false }),
+  "fake-data":         dynamic(() => import("@/components/tools/FakeDataGenerator"),   { ssr: false }),
+  "barcode-generator": dynamic(() => import("@/components/tools/BarcodeGenerator"),   { ssr: false }),
+
+  // Math
+  "statistics-calculator": dynamic(() => import("@/components/tools/StatisticsCalculator"), { ssr: false }),
+  "compound-interest":     dynamic(() => import("@/components/tools/CompoundInterest"),      { ssr: false }),
+  "investment-return":     dynamic(() => import("@/components/tools/InvestmentReturn"),      { ssr: false }),
+  "grade-calculator":      dynamic(() => import("@/components/tools/GradeCalculator"),       { ssr: false }),
+
+  // Health
+  "calorie-calculator":    dynamic(() => import("@/components/tools/CalorieCalculator"),     { ssr: false }),
+  "due-date-calculator":   dynamic(() => import("@/components/tools/DueDateCalculator"),     { ssr: false }),
+  "date-difference":       dynamic(() => import("@/components/tools/DateDifference"),        { ssr: false }),
 };
 
 interface ToolRendererProps {
