@@ -79,6 +79,30 @@ const toolComponents: Record<string, React.ComponentType> = {
   "calorie-calculator":    dynamic(() => import("@/components/tools/CalorieCalculator"),     { ssr: false }),
   "due-date-calculator":   dynamic(() => import("@/components/tools/DueDateCalculator"),     { ssr: false }),
   "date-difference":       dynamic(() => import("@/components/tools/DateDifference"),        { ssr: false }),
+
+  // Developer (Phase 2)
+  "jwt-decoder":   dynamic(() => import("@/components/tools/JWTDecoder"),       { ssr: false }),
+  "css-minifier":  dynamic(() => import("@/components/tools/CSSMinifier"),      { ssr: false }),
+  "sql-formatter": dynamic(() => import("@/components/tools/SQLFormatter"),     { ssr: false }),
+  "url-encoder":   dynamic(() => import("@/components/tools/URLEncoder"),       { ssr: false }),
+  "cron-parser":   dynamic(() => import("@/components/tools/CronParser"),       { ssr: false }),
+  "html-entities": dynamic(() => import("@/components/tools/HTMLEntities"),     { ssr: false }),
+
+  // Text (Phase 2)
+  "readability-checker": dynamic(() => import("@/components/tools/ReadabilityChecker"), { ssr: false }),
+  "text-to-slug":        dynamic(() => import("@/components/tools/TextToSlug"),         { ssr: false }),
+
+  // Finance (Phase 2)
+  "currency-converter": dynamic(() => import("@/components/tools/CurrencyConverter"), { ssr: false }),
+  "vat-calculator":     dynamic(() => import("@/components/tools/VATCalculator"),     { ssr: false }),
+  "mortgage-calculator":dynamic(() => import("@/components/tools/MortgageCalculator"),{ ssr: false }),
+  "discount-calculator":dynamic(() => import("@/components/tools/DiscountCalculator"),{ ssr: false }),
+
+  // Utility (Phase 2)
+  "stopwatch":         dynamic(() => import("@/components/tools/Stopwatch"),              { ssr: false }),
+  "countdown-timer":   dynamic(() => import("@/components/tools/CountdownTimer"),         { ssr: false }),
+  "aspect-ratio":      dynamic(() => import("@/components/tools/AspectRatioCalculator"),  { ssr: false }),
+  "timezone-converter":dynamic(() => import("@/components/tools/TimezoneConverter"),      { ssr: false }),
 };
 
 interface ToolRendererProps {
