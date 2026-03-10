@@ -139,6 +139,45 @@ const toolComponents: Record<string, React.ComponentType> = {
   "line-sorter":      dynamic(() => import("@/components/tools/LineSorter"),       { ssr: false }),
   "fancy-text":       dynamic(() => import("@/components/tools/FancyText"),        { ssr: false }),
   "text-to-speech":   dynamic(() => import("@/components/tools/TextToSpeech"),     { ssr: false }),
+
+  // Developer (Phase 4)
+  "color-contrast-checker": dynamic(() => import("@/components/tools/ColorContrastChecker"), { ssr: false }),
+  "css-gradient-generator": dynamic(() => import("@/components/tools/CSSGradientGenerator"), { ssr: false }),
+  "css-shadow-generator":   dynamic(() => import("@/components/tools/CSSShadowGenerator"),   { ssr: false }),
+  "json-schema-validator":  dynamic(() => import("@/components/tools/JSONSchemaValidator"),  { ssr: false }),
+  "cron-builder":           dynamic(() => import("@/components/tools/CronBuilder"),          { ssr: false }),
+
+  // Security (Phase 4)
+  "jwt-generator": dynamic(() => import("@/components/tools/JWTGenerator"), { ssr: false }),
+  "text-encrypt":  dynamic(() => import("@/components/tools/TextEncrypt"),  { ssr: false }),
+
+  // Image (Phase 4)
+  "color-palette-extractor": dynamic(() => import("@/components/tools/ColorPaletteExtractor"), { ssr: false }),
+  "image-exif-stripper":     dynamic(() => import("@/components/tools/ImageEXIFStripper"),     { ssr: false }),
+  "ascii-art":               dynamic(() => import("@/components/tools/ASCIIArt"),              { ssr: false }),
+
+  // Math (Phase 4)
+  "matrix-calculator":   dynamic(() => import("@/components/tools/MatrixCalculator"),   { ssr: false }),
+  "equation-solver":     dynamic(() => import("@/components/tools/EquationSolver"),     { ssr: false }),
+  "prime-factorization": dynamic(() => import("@/components/tools/PrimeFactorization"), { ssr: false }),
+  "number-base-converter":dynamic(() => import("@/components/tools/NumberBaseConverter"),{ ssr: false }),
+
+  // Finance (Phase 4)
+  "roi-calculator":       dynamic(() => import("@/components/tools/ROICalculator"),       { ssr: false }),
+  "break-even-calculator":dynamic(() => import("@/components/tools/BreakEvenCalculator"), { ssr: false }),
+  "net-worth-calculator": dynamic(() => import("@/components/tools/NetWorthCalculator"),  { ssr: false }),
+  "dividend-calculator":  dynamic(() => import("@/components/tools/DividendCalculator"),  { ssr: false }),
+
+  // Health (Phase 4)
+  "ideal-weight-calculator": dynamic(() => import("@/components/tools/IdealWeightCalculator"), { ssr: false }),
+  "macro-calculator":        dynamic(() => import("@/components/tools/MacroCalculator"),        { ssr: false }),
+  "heart-rate-zones":        dynamic(() => import("@/components/tools/HeartRateZones"),         { ssr: false }),
+
+  // Text (Phase 4)
+  "html-to-markdown": dynamic(() => import("@/components/tools/HTMLtoMarkdown"), { ssr: false }),
+
+  // Productivity (Phase 4)
+  "decision-matrix": dynamic(() => import("@/components/tools/DecisionMatrix"), { ssr: false }),
 };
 
 interface ToolRendererProps {
