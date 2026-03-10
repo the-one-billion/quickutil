@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools";
+import { conversionPairs } from "@/data/conversions";
 
 const BASE = "https://quickutil.io";
 
@@ -16,5 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:        0.8,
   }));
 
-  return [...staticRoutes, ...toolRoutes];
+  const conversionRoutes: MetadataRoute.Sitemap = conversionPairs.map((p) => ({
+    url:             `${BASE}/convert/${p.slug}`,
+    lastModified:    new Date(),
+    changeFrequency: "monthly",
+    priority:        0.7,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...conversionRoutes];
 }

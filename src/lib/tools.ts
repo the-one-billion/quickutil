@@ -19,6 +19,7 @@ export interface Tool {
   category: ToolCategory;
   icon: string;        // Lucide icon name
   keywords: string[];
+  relatedSlugs?: string[];
   isNew?: boolean;
   isPro?: boolean;
 }
@@ -33,6 +34,7 @@ export const tools: Tool[] = [
     category: "PDF",
     icon: "FilePlus2",
     keywords: ["pdf", "merge", "combine", "join"],
+    relatedSlugs: ["pdf-split", "images-to-pdf", "pdf-to-images"],
   },
   {
     slug: "pdf-split",
@@ -42,6 +44,7 @@ export const tools: Tool[] = [
     category: "PDF",
     icon: "Scissors",
     keywords: ["pdf", "split", "extract", "pages"],
+    relatedSlugs: ["pdf-merge", "pdf-to-images", "images-to-pdf"],
   },
   {
     slug: "pdf-to-images",
@@ -51,6 +54,7 @@ export const tools: Tool[] = [
     category: "PDF",
     icon: "Image",
     keywords: ["pdf", "image", "convert", "png", "jpg"],
+    relatedSlugs: ["pdf-split", "image-compress", "image-convert"],
   },
   {
     slug: "images-to-pdf",
@@ -60,6 +64,7 @@ export const tools: Tool[] = [
     category: "PDF",
     icon: "FileImage",
     keywords: ["image", "pdf", "convert"],
+    relatedSlugs: ["pdf-merge", "image-compress", "image-resize"],
   },
 
   // ─── Image ───────────────────────────────────────────────────────────────
@@ -71,6 +76,7 @@ export const tools: Tool[] = [
     category: "Image",
     icon: "Minimize2",
     keywords: ["image", "compress", "reduce", "optimize", "jpg", "png", "webp"],
+    relatedSlugs: ["image-resize", "image-convert", "image-crop"],
   },
   {
     slug: "image-resize",
@@ -80,6 +86,7 @@ export const tools: Tool[] = [
     category: "Image",
     icon: "Expand",
     keywords: ["image", "resize", "scale", "dimension"],
+    relatedSlugs: ["image-compress", "image-crop", "image-convert"],
   },
   {
     slug: "image-crop",
@@ -89,6 +96,7 @@ export const tools: Tool[] = [
     category: "Image",
     icon: "Crop",
     keywords: ["image", "crop", "trim"],
+    relatedSlugs: ["image-resize", "image-compress", "image-watermark"],
   },
   {
     slug: "image-convert",
@@ -98,6 +106,7 @@ export const tools: Tool[] = [
     category: "Image",
     icon: "RefreshCw",
     keywords: ["image", "convert", "format", "jpg", "png", "webp", "gif"],
+    relatedSlugs: ["image-compress", "image-resize", "image-watermark"],
   },
   {
     slug: "image-watermark",
@@ -107,6 +116,7 @@ export const tools: Tool[] = [
     category: "Image",
     icon: "Stamp",
     keywords: ["image", "watermark", "logo", "text"],
+    relatedSlugs: ["image-compress", "image-resize", "image-crop"],
     isNew: true,
   },
   {
@@ -129,6 +139,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Weight",
     keywords: ["bmi", "body mass index", "health", "weight"],
+    relatedSlugs: ["calorie-calculator", "age-calculator", "percentage-calculator"],
   },
   {
     slug: "loan-calculator",
@@ -138,6 +149,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Landmark",
     keywords: ["loan", "mortgage", "interest", "payment", "finance"],
+    relatedSlugs: ["mortgage-calculator", "compound-interest", "tip-calculator"],
   },
   {
     slug: "percentage-calculator",
@@ -147,6 +159,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Percent",
     keywords: ["percentage", "percent", "ratio", "calculator"],
+    relatedSlugs: ["tip-calculator", "discount-calculator", "vat-calculator"],
   },
   {
     slug: "age-calculator",
@@ -156,6 +169,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "CalendarDays",
     keywords: ["age", "birthday", "date", "calculator"],
+    relatedSlugs: ["date-difference", "due-date-calculator", "bmi-calculator"],
   },
   {
     slug: "tip-calculator",
@@ -165,6 +179,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Receipt",
     keywords: ["tip", "bill", "split", "restaurant"],
+    relatedSlugs: ["percentage-calculator", "discount-calculator", "vat-calculator"],
   },
   {
     slug: "scientific-calculator",
@@ -174,6 +189,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Calculator",
     keywords: ["calculator", "scientific", "math", "trig"],
+    relatedSlugs: ["percentage-calculator", "statistics-calculator", "grade-calculator"],
   },
 
   // ─── Converter ───────────────────────────────────────────────────────────
@@ -185,6 +201,7 @@ export const tools: Tool[] = [
     category: "Converter",
     icon: "ArrowLeftRight",
     keywords: ["unit", "convert", "length", "weight", "temperature"],
+    relatedSlugs: ["currency-converter", "color-converter", "binary-hex"],
   },
   {
     slug: "color-converter",
@@ -194,6 +211,7 @@ export const tools: Tool[] = [
     category: "Converter",
     icon: "Palette",
     keywords: ["color", "hex", "rgb", "hsl", "convert"],
+    relatedSlugs: ["color-palette", "unit-converter", "css-minifier"],
   },
   {
     slug: "base64",
@@ -203,6 +221,7 @@ export const tools: Tool[] = [
     category: "Converter",
     icon: "Binary",
     keywords: ["base64", "encode", "decode"],
+    relatedSlugs: ["binary-hex", "hash-generator", "url-encoder"],
   },
   {
     slug: "json-formatter",
@@ -212,6 +231,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Braces",
     keywords: ["json", "format", "validate", "minify", "pretty"],
+    relatedSlugs: ["csv-json", "regex-tester", "sql-formatter"],
   },
 
   // ─── Text ─────────────────────────────────────────────────────────────────
@@ -223,6 +243,7 @@ export const tools: Tool[] = [
     category: "Text",
     icon: "FileText",
     keywords: ["word", "count", "character", "text", "reading time"],
+    relatedSlugs: ["case-converter", "text-diff", "keyword-density"],
   },
   {
     slug: "case-converter",
@@ -232,6 +253,7 @@ export const tools: Tool[] = [
     category: "Text",
     icon: "CaseSensitive",
     keywords: ["case", "upper", "lower", "title", "camel", "text"],
+    relatedSlugs: ["word-counter", "text-to-slug", "text-diff"],
   },
   {
     slug: "text-diff",
@@ -241,6 +263,7 @@ export const tools: Tool[] = [
     category: "Text",
     icon: "Diff",
     keywords: ["diff", "compare", "text", "difference"],
+    relatedSlugs: ["word-counter", "markdown-html", "case-converter"],
   },
   {
     slug: "lorem-ipsum",
@@ -250,6 +273,7 @@ export const tools: Tool[] = [
     category: "Generator",
     icon: "AlignLeft",
     keywords: ["lorem", "ipsum", "placeholder", "text", "generator"],
+    relatedSlugs: ["word-counter", "markdown-html", "fake-data"],
   },
 
   // ─── Generator ────────────────────────────────────────────────────────────
@@ -261,6 +285,7 @@ export const tools: Tool[] = [
     category: "Generator",
     icon: "QrCode",
     keywords: ["qr", "code", "generator", "scan", "barcode"],
+    relatedSlugs: ["barcode-generator", "uuid-generator", "url-encoder"],
   },
   {
     slug: "password-generator",
@@ -270,6 +295,7 @@ export const tools: Tool[] = [
     category: "Security",
     icon: "KeyRound",
     keywords: ["password", "generator", "secure", "random"],
+    relatedSlugs: ["hash-generator", "uuid-generator", "base64"],
   },
   {
     slug: "uuid-generator",
@@ -279,6 +305,7 @@ export const tools: Tool[] = [
     category: "Generator",
     icon: "Hash",
     keywords: ["uuid", "guid", "generator", "unique", "id"],
+    relatedSlugs: ["qr-generator", "hash-generator", "fake-data"],
   },
   {
     slug: "color-palette",
@@ -288,6 +315,7 @@ export const tools: Tool[] = [
     category: "Generator",
     icon: "Pipette",
     keywords: ["color", "palette", "generate", "design"],
+    relatedSlugs: ["color-converter", "color-picker", "css-minifier"],
     isNew: true,
   },
   {
@@ -298,6 +326,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Timer",
     keywords: ["pomodoro", "timer", "focus", "productivity"],
+    relatedSlugs: ["stopwatch", "countdown-timer", "productivity"],
   },
 
   // ─── Security ────────────────────────────────────────────────────────────
@@ -309,6 +338,7 @@ export const tools: Tool[] = [
     category: "Security",
     icon: "ShieldCheck",
     keywords: ["hash", "md5", "sha", "sha256", "security", "checksum"],
+    relatedSlugs: ["password-generator", "base64", "uuid-generator"],
   },
 
   // ─── Developer ───────────────────────────────────────────────────────────
@@ -320,6 +350,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Code2",
     keywords: ["regex", "regular expression", "test", "developer"],
+    relatedSlugs: ["json-formatter", "text-diff", "word-counter"],
   },
   {
     slug: "css-minifier",
@@ -329,6 +360,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Zap",
     keywords: ["css", "minify", "compress", "developer"],
+    relatedSlugs: ["json-formatter", "sql-formatter", "html-entities"],
   },
 
   // ─── Converter (new) ─────────────────────────────────────────────────────
@@ -340,6 +372,7 @@ export const tools: Tool[] = [
     category: "Converter",
     icon: "Table",
     keywords: ["csv", "json", "convert", "data", "table"],
+    relatedSlugs: ["json-formatter", "markdown-html", "word-counter"],
     isNew: true,
   },
   {
@@ -350,6 +383,7 @@ export const tools: Tool[] = [
     category: "Converter",
     icon: "Type",
     keywords: ["roman", "numeral", "convert", "number"],
+    relatedSlugs: ["number-to-words", "binary-hex", "scientific-calculator"],
     isNew: true,
   },
   {
@@ -360,6 +394,7 @@ export const tools: Tool[] = [
     category: "Converter",
     icon: "Spell",
     keywords: ["number", "words", "convert", "spell", "cheque"],
+    relatedSlugs: ["roman-numeral", "binary-hex", "word-counter"],
     isNew: true,
   },
   {
@@ -370,6 +405,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Binary",
     keywords: ["binary", "hex", "hexadecimal", "octal", "decimal", "base", "convert"],
+    relatedSlugs: ["base64", "unit-converter", "roman-numeral"],
     isNew: true,
   },
   {
@@ -380,6 +416,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "FileCode",
     keywords: ["markdown", "html", "convert", "preview", "md"],
+    relatedSlugs: ["word-counter", "text-diff", "html-entities"],
     isNew: true,
   },
   {
@@ -390,6 +427,7 @@ export const tools: Tool[] = [
     category: "Text",
     icon: "BarChart2",
     keywords: ["keyword", "density", "seo", "frequency", "text", "analysis"],
+    relatedSlugs: ["word-counter", "readability-checker", "text-to-slug"],
     isNew: true,
   },
   {
@@ -400,6 +438,7 @@ export const tools: Tool[] = [
     category: "Generator",
     icon: "UserRound",
     keywords: ["fake", "data", "generator", "test", "mock", "name", "email"],
+    relatedSlugs: ["uuid-generator", "email-validator", "lorem-ipsum"],
     isNew: true,
   },
   {
@@ -410,6 +449,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Mail",
     keywords: ["email", "validate", "check", "format", "verify"],
+    relatedSlugs: ["word-counter", "keyword-density", "fake-data"],
     isNew: true,
   },
   {
@@ -420,6 +460,7 @@ export const tools: Tool[] = [
     category: "Generator",
     icon: "ScanBarcode",
     keywords: ["barcode", "ean", "upc", "code128", "generator"],
+    relatedSlugs: ["qr-generator", "uuid-generator", "fake-data"],
     isNew: true,
   },
 
@@ -432,6 +473,7 @@ export const tools: Tool[] = [
     category: "Math",
     icon: "Sigma",
     keywords: ["statistics", "mean", "median", "mode", "standard deviation", "variance"],
+    relatedSlugs: ["grade-calculator", "scientific-calculator", "compound-interest"],
     isNew: true,
   },
 
@@ -444,6 +486,7 @@ export const tools: Tool[] = [
     category: "Finance",
     icon: "TrendingUp",
     keywords: ["compound interest", "investment", "savings", "finance", "calculator"],
+    relatedSlugs: ["investment-return", "mortgage-calculator", "loan-calculator"],
     isNew: true,
   },
   {
@@ -454,6 +497,7 @@ export const tools: Tool[] = [
     category: "Finance",
     icon: "DollarSign",
     keywords: ["investment", "roi", "return", "finance", "calculator"],
+    relatedSlugs: ["compound-interest", "mortgage-calculator", "statistics-calculator"],
     isNew: true,
   },
   {
@@ -464,6 +508,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "GraduationCap",
     keywords: ["grade", "gpa", "calculator", "weighted", "student", "school"],
+    relatedSlugs: ["statistics-calculator", "age-calculator", "percentage-calculator"],
     isNew: true,
   },
 
@@ -476,6 +521,7 @@ export const tools: Tool[] = [
     category: "Health",
     icon: "Flame",
     keywords: ["calorie", "macro", "tdee", "protein", "carbs", "fat", "diet", "fitness"],
+    relatedSlugs: ["bmi-calculator", "due-date-calculator", "age-calculator"],
     isNew: true,
   },
   {
@@ -486,6 +532,7 @@ export const tools: Tool[] = [
     category: "Health",
     icon: "Baby",
     keywords: ["pregnancy", "due date", "calculator", "trimester", "weeks pregnant"],
+    relatedSlugs: ["date-difference", "age-calculator", "calorie-calculator"],
     isNew: true,
   },
   {
@@ -496,6 +543,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "CalendarRange",
     keywords: ["date", "difference", "days", "between", "calculator"],
+    relatedSlugs: ["due-date-calculator", "age-calculator", "timezone-converter"],
     isNew: true,
   },
 
@@ -508,6 +556,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "KeyRound",
     keywords: ["jwt", "json web token", "decode", "auth", "bearer", "token"],
+    relatedSlugs: ["hash-generator", "base64", "url-encoder"],
     isNew: true,
   },
   {
@@ -518,6 +567,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Braces",
     keywords: ["css", "minify", "minifier", "compress", "optimize"],
+    relatedSlugs: ["json-formatter", "sql-formatter", "html-entities"],
     isNew: true,
   },
   {
@@ -528,6 +578,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Database",
     keywords: ["sql", "formatter", "beautify", "format", "query", "database"],
+    relatedSlugs: ["json-formatter", "csv-json", "regex-tester"],
     isNew: true,
   },
   {
@@ -538,6 +589,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Link",
     keywords: ["url", "encode", "decode", "percent", "uri", "query string"],
+    relatedSlugs: ["base64", "jwt-decoder", "html-entities"],
     isNew: true,
   },
   {
@@ -548,6 +600,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Clock4",
     keywords: ["cron", "crontab", "schedule", "expression", "parser", "linux"],
+    relatedSlugs: ["regex-tester", "json-formatter", "stopwatch"],
     isNew: true,
   },
 
@@ -560,6 +613,7 @@ export const tools: Tool[] = [
     category: "Text",
     icon: "BookOpen",
     keywords: ["readability", "flesch", "kincaid", "gunning fog", "reading level", "grade"],
+    relatedSlugs: ["word-counter", "keyword-density", "text-to-slug"],
     isNew: true,
   },
   {
@@ -570,6 +624,7 @@ export const tools: Tool[] = [
     category: "Text",
     icon: "Link2",
     keywords: ["slug", "url", "permalink", "seo", "sanitize", "kebab-case"],
+    relatedSlugs: ["case-converter", "keyword-density", "url-encoder"],
     isNew: true,
   },
   {
@@ -580,6 +635,7 @@ export const tools: Tool[] = [
     category: "Developer",
     icon: "Code2",
     keywords: ["html", "entities", "encode", "decode", "escape", "unescape", "special characters"],
+    relatedSlugs: ["markdown-html", "url-encoder", "base64"],
     isNew: true,
   },
 
@@ -592,6 +648,7 @@ export const tools: Tool[] = [
     category: "Finance",
     icon: "DollarSign",
     keywords: ["currency", "converter", "exchange rate", "usd", "eur", "forex"],
+    relatedSlugs: ["vat-calculator", "discount-calculator", "mortgage-calculator"],
     isNew: true,
   },
   {
@@ -602,6 +659,7 @@ export const tools: Tool[] = [
     category: "Finance",
     icon: "Receipt",
     keywords: ["vat", "tax", "gst", "sales tax", "calculator", "invoice"],
+    relatedSlugs: ["currency-converter", "discount-calculator", "percentage-calculator"],
     isNew: true,
   },
   {
@@ -612,6 +670,7 @@ export const tools: Tool[] = [
     category: "Finance",
     icon: "Home",
     keywords: ["mortgage", "loan", "amortization", "home loan", "monthly payment", "interest"],
+    relatedSlugs: ["loan-calculator", "compound-interest", "discount-calculator"],
     isNew: true,
   },
   {
@@ -622,6 +681,7 @@ export const tools: Tool[] = [
     category: "Finance",
     icon: "Tag",
     keywords: ["discount", "sale", "percent off", "savings", "price", "coupon"],
+    relatedSlugs: ["vat-calculator", "percentage-calculator", "tip-calculator"],
     isNew: true,
   },
 
@@ -634,6 +694,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Timer",
     keywords: ["stopwatch", "timer", "lap", "split", "track", "time"],
+    relatedSlugs: ["countdown-timer", "pomodoro", "date-difference"],
     isNew: true,
   },
   {
@@ -644,6 +705,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "AlarmClock",
     keywords: ["countdown", "timer", "alarm", "clock", "minutes", "seconds"],
+    relatedSlugs: ["stopwatch", "pomodoro", "date-difference"],
     isNew: true,
   },
   {
@@ -654,6 +716,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "RectangleHorizontal",
     keywords: ["aspect ratio", "resolution", "16:9", "4:3", "image", "video", "dimensions"],
+    relatedSlugs: ["image-resize", "image-crop", "unit-converter"],
     isNew: true,
   },
   {
@@ -664,6 +727,7 @@ export const tools: Tool[] = [
     category: "Calculator",
     icon: "Globe",
     keywords: ["timezone", "time zone", "convert", "utc", "gmt", "world clock", "dst"],
+    relatedSlugs: ["date-difference", "age-calculator", "stopwatch"],
     isNew: true,
   },
 ];

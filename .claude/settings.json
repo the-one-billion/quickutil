@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "Bash(git add -A)"
+      "Bash(git add -A)",
+      "Bash(git add src/components/tools/TextToSlug.tsx)",
+      "Bash(ls /Users/devsid/Dev/Projects/utility/src/app/sitemap*)",
+      "Bash(npx tsc --noEmit --target ES2020)"
     ]
   }
 }
