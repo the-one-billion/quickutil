@@ -13,11 +13,28 @@ function navigate(url) {
   frame.src = url;
 }
 
-// Handle iframe load errors
-frame.addEventListener("error", () => {
-  frame.hidden = true;
-  offlineMsg.hidden = false;
+// Detect actual page load failure (blocked by CSP / network) via load timeout.
+// The iframe "error" event fires for script errors inside the page — unreliable.
+let loadTimeout;
+frame.addEventListener("load", () => {
+  clearTimeout(loadTimeout);
+  // If we can read contentDocument it loaded fine; if cross-origin it throws but that's OK
+  try { void frame.contentDocument; } catch { /* cross-origin = loaded fine */ }
+  frame.hidden = false;
+  offlineMsg.hidden = true;
 });
+
+function startLoadTimeout() {
+  clearTimeout(loadTimeout);
+  // Only show offline message if the frame hasn't triggered 'load' in 10s
+  loadTimeout = setTimeout(() => {
+    if (!navigator.onLine) {
+      frame.hidden = true;
+      offlineMsg.hidden = false;
+    }
+  }, 10000);
+}
+startLoadTimeout();
 
 // Toolbar buttons
 btnHome.addEventListener("click",    () => navigate(BASE));

@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
 const navLinks = [
-  { href: "/",        label: "Home"  },
-  { href: "/tools",   label: "Tools" },
+  { href: "/",      label: "Home"  },
+  { href: "/tools", label: "Tools" },
 ];
 
 export default function Navigation() {
