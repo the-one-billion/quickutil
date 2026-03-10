@@ -154,7 +154,7 @@ export default async function ToolPage({
 
       {/* Top ad */}
       <div className="mb-6 flex justify-center">
-        <AdSlot size="leaderboard" />
+        <AdSlot size="leaderboard" adClient="ca-pub-5463169058698651" />
       </div>
 
       {/* Tool UI — client component handles ssr:false dynamic imports */}
@@ -194,7 +194,7 @@ export default async function ToolPage({
 
       {/* Bottom ad */}
       <div className="mt-8 flex justify-center">
-        <AdSlot size="rectangle" />
+        <AdSlot size="rectangle" adClient="ca-pub-5463169058698651" />
       </div>
 
       {/* FAQ */}

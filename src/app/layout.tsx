@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         {/* Google AdSense — uncomment and replace ca-pub-XXXXXXXX when approved */}
-        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossOrigin="anonymous" /> */}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5463169058698651" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} ${manrope.variable} ${jetbrains.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

@@ -75,7 +75,7 @@ export default function ToolsPage() {
 
       {/* Ad slot */}
       <div className="mb-8 flex justify-center">
-        <AdSlot size="leaderboard" />
+        <AdSlot size="leaderboard" adClient="ca-pub-5463169058698651" />
       </div>
 
       {/* Tools grid */}
@@ -99,7 +99,7 @@ export default function ToolsPage() {
                   key={`ad-${i}`}
                   className="col-span-full flex justify-center py-2"
                 >
-                  <AdSlot size="rectangle" />
+                  <AdSlot size="rectangle" adClient="ca-pub-5463169058698651" />
                 </div>
               )}
             </>

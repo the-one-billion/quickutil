@@ -220,7 +220,7 @@ export default function HomePage() {
 
       {/* ── Ad ────────────────────────────────────────────────────────────── */}
       <div className="flex justify-center py-4">
-        <AdSlot size="leaderboard" />
+        <AdSlot size="leaderboard" adClient="ca-pub-5463169058698651" />
       </div>
 
       {/* ── Category Grid ─────────────────────────────────────────────────── */}
@@ -528,7 +528,7 @@ export default function HomePage() {
 
       {/* ── Bottom Ad ─────────────────────────────────────────────────────── */}
       <div className="flex justify-center py-10">
-        <AdSlot size="rectangle" />
+        <AdSlot size="rectangle" adClient="ca-pub-5463169058698651"/>
       </div>
 
       {/* ── Schema markup ─────────────────────────────────────────────────── */}

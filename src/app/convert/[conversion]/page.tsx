@@ -216,7 +216,7 @@ export default async function ConversionPage({
 
         {/* Ad slot */}
         <div className="my-10 flex justify-center">
-          <AdSlot size="leaderboard" />
+          <AdSlot size="leaderboard" adClient="ca-pub-5463169058698651" />
         </div>
 
         {/* Formula section */}
