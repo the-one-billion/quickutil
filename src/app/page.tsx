@@ -4,19 +4,21 @@ import {
   ArrowRight, Zap, Shield, Smartphone, Globe,
   FileText, ImageIcon, Calculator, Type, ArrowLeftRight,
   Sparkles, Lock, Code2, Heart, DollarSign, Sigma,
-  ChevronRight,
+  ChevronRight, Cpu, Layers, Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { tools, categories, type ToolCategory } from "@/lib/tools";
 import AdSlot from "@/components/AdSlot";
+import ToolSearch from "@/components/ToolSearch";
+import RecentlyUsedStrip from "@/components/RecentlyUsedStrip";
 
 export const metadata: Metadata = {
-  title: "QuickUtil – 64+ Free Browser-Based Tools",
+  title: "QuickUtil – 112+ Free Browser-Based Tools",
   description:
-    "PDF merge, image compress, BMI calculator, JWT decoder, mortgage calculator and 60+ more free tools — all client-side. Your files never leave your browser.",
+    "The private alternative to SmallPDF, TinyWow, and ILovePDF. 112+ free tools for PDF, image, developer, finance, and more — 100% client-side. Your files never leave your browser.",
 };
 
-// ── Data ─────────────────────────────────────────────────────────────────────
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 const popularSlugs = [
   "pdf-merge", "image-compress", "qr-generator", "bmi-calculator",
@@ -27,32 +29,84 @@ const popularTools = popularSlugs
   .map((s) => tools.find((t) => t.slug === s))
   .filter(Boolean) as typeof tools;
 
-const categoryMeta: Record<ToolCategory, { icon: React.ElementType; description: string; slug: string }> = {
-  PDF:       { icon: FileText,       description: "Merge, split, compress, and convert PDFs in-browser.",        slug: "pdf" },
-  Image:     { icon: ImageIcon,      description: "Compress, resize, crop, convert and watermark images.",       slug: "image" },
-  Calculator:{ icon: Calculator,     description: "BMI, mortgage, loan, tip, and 10+ life calculators.",         slug: "calculator" },
-  Text:      { icon: Type,           description: "Word count, case convert, readability, slug generator.",      slug: "text" },
-  Converter: { icon: ArrowLeftRight, description: "Unit, currency, color, base, CSV↔JSON and more.",            slug: "converter" },
-  Generator: { icon: Sparkles,       description: "QR codes, barcodes, UUIDs, fake data, color palettes.",      slug: "generator" },
-  Security:  { icon: Lock,           description: "Password generator, hash tools, JWT decoder, encryption.",   slug: "security" },
-  Developer: { icon: Code2,          description: "JSON formatter, regex tester, SQL formatter, cron parser.",  slug: "developer" },
-  Health:    { icon: Heart,          description: "Calorie, due date, and date difference calculators.",         slug: "health" },
-  Finance:   { icon: DollarSign,     description: "Currency, VAT, mortgage, discount, investment tools.",       slug: "finance" },
-  Math:      { icon: Sigma,          description: "Statistics, compound interest, grade calculator, and more.", slug: "math" },
+// Most recently added tools — last 6 with isNew flag
+const newToolSlugs = [
+  "decision-matrix", "html-to-markdown", "heart-rate-zones",
+  "macro-calculator", "text-encrypt", "color-contrast-checker",
+];
+const newTools = newToolSlugs
+  .map(s => tools.find(t => t.slug === s))
+  .filter(Boolean) as typeof tools;
+
+const categoryMeta: Record<ToolCategory, { icon: React.ElementType; slug: string }> = {
+  PDF:        { icon: FileText,       slug: "pdf"        },
+  Image:      { icon: ImageIcon,      slug: "image"      },
+  Calculator: { icon: Calculator,     slug: "calculator" },
+  Text:       { icon: Type,           slug: "text"       },
+  Converter:  { icon: ArrowLeftRight, slug: "converter"  },
+  Generator:  { icon: Sparkles,       slug: "generator"  },
+  Security:   { icon: Lock,           slug: "security"   },
+  Developer:  { icon: Code2,          slug: "developer"  },
+  Health:     { icon: Heart,          slug: "health"     },
+  Finance:    { icon: DollarSign,     slug: "finance"    },
+  Math:       { icon: Sigma,          slug: "math"       },
 };
+
+const useCases = [
+  {
+    icon: Users,
+    title: "Freelancers & Creatives",
+    color: "text-violet-500",
+    bg: "bg-violet-500/10",
+    tasks: [
+      { label: "Merge client PDFs",          slug: "pdf-merge"         },
+      { label: "Compress images for email",  slug: "image-compress"    },
+      { label: "Calculate invoice discounts",slug: "discount-calculator"},
+      { label: "Generate QR codes for links",slug: "qr-generator"      },
+    ],
+  },
+  {
+    icon: Cpu,
+    title: "Developers",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+    tasks: [
+      { label: "Format & validate JSON",     slug: "json-formatter"    },
+      { label: "Decode & inspect JWTs",      slug: "jwt-decoder"       },
+      { label: "Build cron expressions",     slug: "cron-builder"      },
+      { label: "Check WCAG color contrast",  slug: "color-contrast-checker" },
+    ],
+  },
+  {
+    icon: Layers,
+    title: "Everyday Use",
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+    tasks: [
+      { label: "Calculate mortgage payments",slug: "mortgage-calculator"},
+      { label: "Track sleep cycles",         slug: "sleep-calculator"  },
+      { label: "Check tax brackets",         slug: "tax-bracket-calculator"},
+      { label: "Convert units instantly",    slug: "unit-converter"    },
+    ],
+  },
+];
 
 const faqs = [
   {
     q: "Are all tools really free?",
-    a: "Yes, all 64+ tools are completely free with no hidden fees, no premium tiers, and no registration required.",
+    a: `Yes — all ${tools.length}+ tools are completely free with no hidden fees, no premium tiers, and no registration required.`,
   },
   {
     q: "Do my files ever leave my device?",
-    a: "Never. Every tool runs entirely in your browser using client-side APIs. No file, image, or text is ever transmitted to a server. You can verify this by opening your browser's Network tab while using any tool.",
+    a: "Never. Every tool runs entirely in your browser using client-side APIs (PDF.js, Canvas, Web Crypto). No file, image, or text is ever transmitted to a server. Verify this yourself: open any tool → F12 → Network tab → use the tool → zero upload requests.",
+  },
+  {
+    q: "How is QuickUtil different from SmallPDF or TinyWow?",
+    a: "SmallPDF, TinyWow, and ILovePDF upload your files to their servers to process them — your documents leave your device. QuickUtil is different by architecture: we process everything locally, which means we physically cannot see your files because they never reach us.",
   },
   {
     q: "Do I need to create an account?",
-    a: "No. There is no account, no login, no email required. Just open a tool and use it.",
+    a: "No. There is no account, no login, no email required. Open a tool and use it.",
   },
   {
     q: "Is there a file size limit?",
@@ -60,11 +114,7 @@ const faqs = [
   },
   {
     q: "Do the tools work offline?",
-    a: "Yes, once the page is loaded the tools work offline. QuickUtil is a Progressive Web App (PWA) — you can even install it to your home screen.",
-  },
-  {
-    q: "How is QuickUtil different from SmallPDF or TinyWow?",
-    a: "Those services upload your files to their servers to process them. QuickUtil processes everything locally in your browser. We physically cannot see your files because they never reach our servers.",
+    a: "Yes — once a page is loaded, the tools work without an internet connection. QuickUtil is a PWA (Progressive Web App) — you can install it to your home screen.",
   },
 ];
 
@@ -72,14 +122,14 @@ const faqs = [
 
 export default function HomePage() {
   const toolCount = tools.length;
-  const catCount = categories.length;
+  const catCount  = categories.length;
 
   return (
     <>
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 to-background pb-20 pt-24 text-center">
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 to-background pb-16 pt-20 text-center">
         <div
-          className="pointer-events-none absolute inset-0 opacity-20"
+          className="pointer-events-none absolute inset-0 opacity-[0.15]"
           style={{
             backgroundImage:
               "radial-gradient(circle at 1px 1px, hsl(var(--border)) 1px, transparent 0)",
@@ -87,41 +137,84 @@ export default function HomePage() {
           }}
         />
         <div className="relative mx-auto max-w-3xl px-4">
+          {/* Badge */}
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Zap className="h-3.5 w-3.5" />
-            {toolCount}+ Free Tools · 100% Browser-Side · No Upload Ever
+            {toolCount}+ Tools · Zero Upload · No Account · Works Offline
           </div>
 
+          {/* H1 */}
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            Every tool you need.{" "}
-            <span className="text-primary">Your files never leave your device.</span>
+            The private alternative to{" "}
+            <span className="text-primary">SmallPDF, TinyWow,</span>{" "}
+            and ILovePDF.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            {toolCount}+ free browser-based tools for PDF, image, code, finance, and more.
-            No upload. No account. No watermark. No file size limit. Ever.
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
+            {toolCount}+ free tools for PDF, image, developer, finance, health, and more.
+            Every tool runs in your browser.{" "}
+            <strong className="text-foreground">Your files never touch our servers.</strong>
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/tools">
+          {/* Search bar */}
+          <div className="mt-8">
+            <ToolSearch />
+          </div>
+
+          {/* CTAs */}
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link href="/tools/pdf-merge">
               <Button size="lg" className="gap-2">
-                Browse All {toolCount} Tools <ArrowRight className="h-4 w-4" />
+                Try PDF Merge Free <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
-            <Link href="/tools/pdf-merge">
+            <Link href="/tools">
               <Button size="lg" variant="outline">
-                Try PDF Merge Free
+                Browse All {toolCount} Tools
               </Button>
             </Link>
           </div>
 
           {/* Trust bar */}
-          <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-green-500" /> Files processed locally</span>
-            <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-amber-500" /> No sign-up required</span>
+          <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+            <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-green-500" /> Files stay on your device</span>
+            <span className="flex items-center gap-1.5"><Zap className="h-4 w-4 text-amber-500" /> No sign-up, ever</span>
             <span className="flex items-center gap-1.5"><Globe className="h-4 w-4 text-blue-500" /> Works offline</span>
             <span className="flex items-center gap-1.5"><Smartphone className="h-4 w-4 text-purple-500" /> Mobile-ready PWA</span>
           </div>
+        </div>
+      </section>
+
+      {/* ── Recently Used (client-only, localStorage) ─────────────────────── */}
+      <RecentlyUsedStrip />
+
+      {/* ── Popular Tools ─────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-extrabold">Popular Tools</h2>
+            <p className="mt-1 text-sm text-muted-foreground">Most-used tools by our visitors</p>
+          </div>
+          <Link href="/tools">
+            <Button variant="ghost" size="sm" className="gap-1">
+              All {toolCount} Tools <ArrowRight className="h-3.5 w-3.5" />
+            </Button>
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {popularTools.map((tool) => (
+            <Link key={tool.slug} href={`/tools/${tool.slug}`} className="tool-card group">
+              <div>
+                <h3 className="font-semibold group-hover:text-primary transition-colors">{tool.name}</h3>
+                <p className="text-sm text-muted-foreground line-clamp-2 mt-0.5">
+                  {tool.description}
+                </p>
+              </div>
+              <span className="mt-auto flex items-center gap-1 text-xs font-medium text-primary">
+                Use free <ArrowRight className="h-3 w-3" />
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -131,134 +224,199 @@ export default function HomePage() {
       </div>
 
       {/* ── Category Grid ─────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-            {catCount} Tool Categories
-          </h2>
-          <p className="mt-2 text-muted-foreground">
-            From PDFs to finance to developer utilities — everything you need in one place.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {(Object.entries(categoryMeta) as [ToolCategory, typeof categoryMeta[ToolCategory]][]).map(
-            ([cat, meta]) => {
-              const Icon = meta.icon;
-              const count = tools.filter((t) => t.category === cat).length;
-              return (
-                <Link
-                  key={cat}
-                  href={`/categories/${meta.slug}`}
-                  className="group flex flex-col gap-3 rounded-xl border border-border bg-card p-5 hover:border-primary/50 hover:shadow-md transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-5 w-5 text-primary" />
+      <section className="bg-muted/30 py-16" id="categories">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+              {catCount} Tool Categories
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              From PDFs to finance to developer utilities — everything in one place.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {(Object.entries(categoryMeta) as [ToolCategory, typeof categoryMeta[ToolCategory]][]).map(
+              ([cat, meta]) => {
+                const Icon       = meta.icon;
+                const catTools   = tools.filter(t => t.category === cat);
+                const count      = catTools.length;
+                const topNames   = catTools.slice(0, 4).map(t => t.name);
+                const remaining  = Math.max(0, count - 4);
+                return (
+                  <Link
+                    key={cat}
+                    href={`/categories/${meta.slug}`}
+                    className="group flex flex-col gap-3 rounded-xl border border-border bg-card p-5 hover:border-primary/50 hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                          <Icon className="h-5 w-5 text-primary" />
+                        </div>
+                        <p className="font-semibold leading-none">{cat}</p>
+                      </div>
+                      <span className="text-xs text-muted-foreground">{count} tools</span>
                     </div>
-                    <div>
-                      <p className="font-semibold leading-none">{cat}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{count} tools</p>
+                    <div className="flex flex-wrap gap-1">
+                      {topNames.map(name => (
+                        <span key={name} className="text-xs text-muted-foreground bg-muted/60 rounded px-1.5 py-0.5">
+                          {name}
+                        </span>
+                      ))}
+                      {remaining > 0 && (
+                        <span className="text-xs text-primary font-medium bg-primary/10 rounded px-1.5 py-0.5">
+                          +{remaining} more
+                        </span>
+                      )}
                     </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-snug">{meta.description}</p>
-                  <span className="mt-auto flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    Browse {cat} tools <ChevronRight className="h-3 w-3" />
-                  </span>
-                </Link>
-              );
-            }
-          )}
+                    <span className="flex items-center gap-1 text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                      Browse {cat} tools <ChevronRight className="h-3 w-3" />
+                    </span>
+                  </Link>
+                );
+              }
+            )}
+          </div>
         </div>
       </section>
 
-      {/* ── Popular Tools ─────────────────────────────────────────────────── */}
+      {/* ── New This Month ────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-extrabold">New This Month</h2>
+            <p className="mt-1 text-sm text-muted-foreground">Recently added advanced tools</p>
+          </div>
+          <Link href="/tools">
+            <Button variant="ghost" size="sm" className="gap-1">
+              See all new <ArrowRight className="h-3.5 w-3.5" />
+            </Button>
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {newTools.map(tool => (
+            <Link
+              key={tool.slug}
+              href={`/tools/${tool.slug}`}
+              className="group flex items-start gap-4 rounded-xl border border-border bg-card p-4 hover:border-primary/50 hover:shadow-sm transition-all"
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="font-semibold text-sm group-hover:text-primary transition-colors truncate">
+                    {tool.name}
+                  </h3>
+                  <span className="shrink-0 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold text-primary uppercase tracking-wide">
+                    New
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground line-clamp-2">{tool.description}</p>
+              </div>
+              <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors mt-0.5" />
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Privacy / Trust ───────────────────────────────────────────────── */}
       <section className="bg-muted/30 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-10 flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-extrabold">Popular Tools</h2>
-              <p className="mt-1 text-sm text-muted-foreground">Most-used tools this week</p>
-            </div>
-            <Link href="/tools">
-              <Button variant="ghost" size="sm" className="gap-1">
-                All {toolCount} Tools <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {popularTools.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/tools/${tool.slug}`}
-                className="tool-card group"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                  <Zap className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{tool.name}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mt-0.5">
-                    {tool.description}
-                  </p>
-                </div>
-                <span className="mt-auto flex items-center gap-1 text-xs font-medium text-primary">
-                  Use tool <ArrowRight className="h-3 w-3" />
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="rounded-2xl border border-green-500/20 bg-green-500/5 p-8 md:p-12">
+            <div className="mx-auto max-w-3xl text-center">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500/10">
+                <Shield className="h-7 w-7 text-green-600 dark:text-green-400" />
+              </div>
+              <h2 className="text-2xl font-extrabold sm:text-3xl">
+                We built it so storing your data is impossible.
+              </h2>
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                We don&apos;t just promise not to store your files — we built an architecture where it cannot happen.
+                SmallPDF, TinyWow, and ILovePDF process files on their servers. QuickUtil does not have a file processing server.
+              </p>
 
-      {/* ── Privacy Section ───────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="rounded-2xl border border-green-500/20 bg-green-500/5 p-8 md:p-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500/10">
-              <Shield className="h-7 w-7 text-green-600 dark:text-green-400" />
-            </div>
-            <h2 className="text-2xl font-extrabold sm:text-3xl">
-              Why "no upload" actually matters
-            </h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              Most free tool sites — SmallPDF, TinyWow, ILoveIMG — upload your files to their servers
-              to process them. Your documents, images, and data leave your device.
-            </p>
-            <p className="mt-3 text-muted-foreground leading-relaxed">
-              QuickUtil is different <strong className="text-foreground">by architecture</strong>.
-              PDF merging uses PDF.js in your browser. Image compression uses the Canvas API.
-              Passwords are generated with the Web Crypto API. Nothing is transmitted.
-            </p>
-            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {[
-                { icon: "🔒", title: "Zero transmission", desc: "Open DevTools → Network tab. Watch: zero file upload requests." },
-                { icon: "⚡", title: "Works offline", desc: "Once loaded, all tools function without an internet connection." },
-                { icon: "∞", title: "No size limits", desc: "No artificial file size caps. Processes files limited only by your device's RAM." },
-              ].map(({ icon, title, desc }) => (
-                <div key={title} className="rounded-xl border border-green-500/20 bg-background/60 p-4 text-center">
-                  <div className="mb-2 text-2xl">{icon}</div>
-                  <p className="font-semibold text-sm">{title}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{desc}</p>
-                </div>
-              ))}
+              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {[
+                  {
+                    icon: "📄",
+                    title: "PDF.js (Mozilla)",
+                    desc: "PDF merging, splitting, and conversion runs in your browser tab using the same engine Firefox uses.",
+                  },
+                  {
+                    icon: "🖼",
+                    title: "Canvas API",
+                    desc: "Image compression, resizing, and format conversion uses the browser's native Canvas API — zero uploads.",
+                  },
+                  {
+                    icon: "🔐",
+                    title: "Web Crypto API",
+                    desc: "Passwords, hashes, JWT signing, and AES-256 encryption use the browser's built-in cryptography engine.",
+                  },
+                ].map(({ icon, title, desc }) => (
+                  <div key={title} className="rounded-xl border border-green-500/20 bg-background/60 p-4 text-center">
+                    <div className="mb-2 text-2xl">{icon}</div>
+                    <p className="font-semibold text-sm">{title}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-6 text-sm text-muted-foreground">
+                <strong className="text-foreground">Verify it yourself:</strong> open any tool → press{" "}
+                <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">F12</kbd> →
+                Network tab → use the tool → zero upload requests.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── Stats ─────────────────────────────────────────────────────────── */}
-      <section className="bg-muted/30 py-14">
+      <section className="py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
             {[
-              { value: `${toolCount}+`,  label: "Free Tools"        },
-              { value: `${catCount}`,    label: "Categories"        },
-              { value: "0",              label: "Files Uploaded"    },
-              { value: "100%",           label: "Client-Side"       },
+              { value: `${toolCount}+`, label: "Free Tools"      },
+              { value: `${catCount}`,   label: "Categories"      },
+              { value: "0",             label: "Files Uploaded"  },
+              { value: "100%",          label: "Client-Side"     },
             ].map(({ value, label }) => (
               <div key={label}>
                 <p className="text-4xl font-extrabold text-primary">{value}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Use Cases ─────────────────────────────────────────────────────── */}
+      <section className="bg-muted/30 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-extrabold sm:text-3xl">Who uses QuickUtil?</h2>
+            <p className="mt-2 text-muted-foreground">Common tasks — all free, all instant, all private.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {useCases.map(({ icon: Icon, title, color, bg, tasks }) => (
+              <div key={title} className="rounded-xl border border-border bg-card p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${bg}`}>
+                    <Icon className={`h-5 w-5 ${color}`} />
+                  </div>
+                  <h3 className="font-semibold">{title}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {tasks.map(({ label, slug }) => (
+                    <li key={slug}>
+                      <Link
+                        href={`/tools/${slug}`}
+                        className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                      >
+                        <ChevronRight className={`h-3.5 w-3.5 shrink-0 ${color} opacity-70 group-hover:opacity-100`} />
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -282,12 +440,9 @@ export default function HomePage() {
             }),
           }}
         />
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map(({ q, a }) => (
-            <details
-              key={q}
-              className="group rounded-xl border border-border bg-card"
-            >
+            <details key={q} className="group rounded-xl border border-border bg-card">
               <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-medium list-none">
                 {q}
                 <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
@@ -303,42 +458,69 @@ export default function HomePage() {
       {/* ── SEO Content Block ─────────────────────────────────────────────── */}
       <section className="border-t border-border bg-muted/20 py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-xl font-bold mb-4">About QuickUtil — Free Online Tools</h2>
-          <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground space-y-3 text-sm leading-relaxed">
+          <h2 className="text-xl font-bold mb-4">Free Online Utility Tools — No Upload Required</h2>
+          <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground space-y-4 text-sm leading-relaxed">
             <p>
-              QuickUtil is a free collection of {toolCount}+ browser-based utility tools spanning
-              {" "}{catCount} categories: PDF tools, image tools, developer utilities, calculators,
-              text tools, converters, generators, security tools, health calculators, finance tools,
-              and math tools. Every tool runs entirely client-side — no file is ever uploaded to
-              a server.
+              QuickUtil is a free collection of {toolCount}+ browser-based utility tools spanning {catCount} categories.
+              Every tool runs entirely client-side — no file is ever uploaded to a server, making it
+              the privacy-first alternative to SmallPDF, TinyWow, ILovePDF, and ILoveIMG.
             </p>
             <p>
-              <strong className="text-foreground">PDF tools</strong> include PDF merge (combine multiple PDFs),
-              PDF split (extract pages), images to PDF, and PDF to images converter — all powered by PDF.js running locally.
-              <strong className="text-foreground"> Image tools</strong> include image compressor, image resizer,
-              image cropper, format converter (JPG, PNG, WebP), and image watermark tool — all using the
-              browser Canvas API with zero uploads.
+              <strong className="text-foreground">PDF tools:</strong>{" "}
+              <Link href="/tools/pdf-merge" className="text-primary hover:underline">PDF Merge</Link> combines
+              multiple PDFs into one.{" "}
+              <Link href="/tools/pdf-split" className="text-primary hover:underline">PDF Split</Link> extracts
+              pages or page ranges.{" "}
+              <Link href="/tools/images-to-pdf" className="text-primary hover:underline">Images to PDF</Link> converts
+              JPG and PNG files into a PDF document — all powered by PDF.js running locally in your browser.
             </p>
             <p>
-              <strong className="text-foreground">Developer tools</strong> include a JSON formatter,
-              JWT decoder (with expiry checking), regex tester, SQL formatter, CSS minifier,
-              URL encoder/decoder, cron expression parser, and HTML entities encoder.
-              <strong className="text-foreground"> Calculator tools</strong> cover BMI, loan payments,
-              mortgage with amortization schedule, compound interest, investment return, grade/GPA,
-              tip, percentage, age, and scientific calculator.
+              <strong className="text-foreground">Image tools:</strong>{" "}
+              <Link href="/tools/image-compress" className="text-primary hover:underline">Image Compressor</Link> reduces
+              file size by up to 90% without visible quality loss.{" "}
+              <Link href="/tools/image-resize" className="text-primary hover:underline">Image Resizer</Link>,{" "}
+              <Link href="/tools/image-crop" className="text-primary hover:underline">Image Crop</Link>, and{" "}
+              <Link href="/tools/image-convert" className="text-primary hover:underline">Image Format Converter</Link> (JPG,
+              PNG, WebP) all use the Canvas API — zero uploads.
             </p>
             <p>
-              <strong className="text-foreground">Finance tools</strong> include a currency converter
-              (30+ currencies), VAT/sales tax calculator, mortgage calculator with SVG amortization chart,
-              and discount calculator with stacked discount support.
-              <strong className="text-foreground"> Text tools</strong> include word counter, case converter,
-              text diff, readability checker (6 scoring algorithms), keyword density, email validator,
-              and text to URL slug converter.
+              <strong className="text-foreground">Developer tools:</strong>{" "}
+              <Link href="/tools/json-formatter" className="text-primary hover:underline">JSON Formatter</Link>,{" "}
+              <Link href="/tools/regex-tester" className="text-primary hover:underline">Regex Tester</Link>,{" "}
+              <Link href="/tools/jwt-decoder" className="text-primary hover:underline">JWT Decoder</Link> with expiry
+              checking,{" "}
+              <Link href="/tools/sql-formatter" className="text-primary hover:underline">SQL Formatter</Link>,{" "}
+              <Link href="/tools/cron-builder" className="text-primary hover:underline">Cron Builder</Link>, and{" "}
+              <Link href="/tools/color-contrast-checker" className="text-primary hover:underline">WCAG Contrast Checker</Link>.
             </p>
             <p>
-              QuickUtil is the privacy-first alternative to SmallPDF, TinyWow, ILovePDF, and ILoveIMG.
-              Unlike those services, QuickUtil processes all data locally — making it suitable for
-              confidential documents, sensitive financial information, and private communications.
+              <strong className="text-foreground">Finance tools:</strong>{" "}
+              <Link href="/tools/mortgage-calculator" className="text-primary hover:underline">Mortgage Calculator</Link> with
+              amortization schedule,{" "}
+              <Link href="/tools/tax-bracket-calculator" className="text-primary hover:underline">Tax Bracket Calculator</Link> (2024
+              US federal rates),{" "}
+              <Link href="/tools/retirement-calculator" className="text-primary hover:underline">Retirement Calculator</Link> with
+              4% rule projection, and{" "}
+              <Link href="/tools/credit-card-payoff" className="text-primary hover:underline">Credit Card Payoff Calculator</Link>.
+            </p>
+            <p>
+              <strong className="text-foreground">Health tools:</strong>{" "}
+              <Link href="/tools/macro-calculator" className="text-primary hover:underline">Macro Calculator</Link> using
+              Mifflin-St Jeor BMR,{" "}
+              <Link href="/tools/heart-rate-zones" className="text-primary hover:underline">Heart Rate Zones</Link> (Karvonen
+              formula),{" "}
+              <Link href="/tools/sleep-calculator" className="text-primary hover:underline">Sleep Cycle Calculator</Link>, and{" "}
+              <Link href="/tools/ideal-weight-calculator" className="text-primary hover:underline">Ideal Weight Calculator</Link> using
+              5 medical formulas.
+            </p>
+            <p>
+              <strong className="text-foreground">Security tools:</strong>{" "}
+              <Link href="/tools/password-generator" className="text-primary hover:underline">Password Generator</Link>,{" "}
+              <Link href="/tools/hash-generator" className="text-primary hover:underline">Hash Generator</Link> (MD5, SHA-1,
+              SHA-256, SHA-512),{" "}
+              <Link href="/tools/text-encrypt" className="text-primary hover:underline">AES-256 Text Encryptor</Link>, and{" "}
+              <Link href="/tools/jwt-generator" className="text-primary hover:underline">JWT Generator</Link> — all using
+              the browser&apos;s Web Crypto API.
             </p>
           </div>
         </div>
@@ -349,7 +531,7 @@ export default function HomePage() {
         <AdSlot size="rectangle" />
       </div>
 
-      {/* ── Schema: SiteLinksSearchBox ────────────────────────────────────── */}
+      {/* ── Schema markup ─────────────────────────────────────────────────── */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

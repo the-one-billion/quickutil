@@ -6,6 +6,7 @@ import { getToolBySlug, getToolsByCategory, tools } from "@/lib/tools";
 import AdSlot from "@/components/AdSlot";
 import { Button } from "@/components/ui/button";
 import ToolRenderer from "@/components/ToolRenderer";
+import ToolVisitTracker from "@/components/ToolVisitTracker";
 
 // ── Static params (SSG) ───────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -160,6 +161,9 @@ export default async function ToolPage({
       <div className="rounded-xl border border-border bg-card p-6">
         <ToolRenderer slug={slug} />
       </div>
+
+      {/* Track visit for "Recently Used" on homepage */}
+      <ToolVisitTracker slug={slug} />
 
       {/* Privacy badge */}
       <p className="mt-4 text-center text-xs text-muted-foreground">
