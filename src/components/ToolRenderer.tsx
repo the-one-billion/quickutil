@@ -103,6 +103,42 @@ const toolComponents: Record<string, React.ComponentType> = {
   "countdown-timer":   dynamic(() => import("@/components/tools/CountdownTimer"),         { ssr: false }),
   "aspect-ratio":      dynamic(() => import("@/components/tools/AspectRatioCalculator"),  { ssr: false }),
   "timezone-converter":dynamic(() => import("@/components/tools/TimezoneConverter"),      { ssr: false }),
+
+  // Developer (Phase 3)
+  "xml-formatter":  dynamic(() => import("@/components/tools/XMLFormatter"),  { ssr: false }),
+  "yaml-json":      dynamic(() => import("@/components/tools/YAMLJSON"),      { ssr: false }),
+  "diff-checker":   dynamic(() => import("@/components/tools/DiffChecker"),   { ssr: false }),
+  "color-picker":   dynamic(() => import("@/components/tools/ColorPicker"),   { ssr: false }),
+
+  // Fun (Phase 3)
+  "coin-flip":      dynamic(() => import("@/components/tools/CoinFlip"),      { ssr: false }),
+  "dice-roller":    dynamic(() => import("@/components/tools/DiceRoller"),    { ssr: false }),
+  "random-picker":  dynamic(() => import("@/components/tools/RandomPicker"),  { ssr: false }),
+  "morse-code":     dynamic(() => import("@/components/tools/MorseCode"),     { ssr: false }),
+
+  // Image (Phase 3)
+  "image-to-base64":dynamic(() => import("@/components/tools/ImageToBase64"), { ssr: false }),
+  "exif-viewer":    dynamic(() => import("@/components/tools/EXIFViewer"),    { ssr: false }),
+  "image-flipper":  dynamic(() => import("@/components/tools/ImageFlipper"),  { ssr: false }),
+  "svg-to-png":     dynamic(() => import("@/components/tools/SVGtoPNG"),      { ssr: false }),
+
+  // Health (Phase 3)
+  "body-fat-calculator":      dynamic(() => import("@/components/tools/BodyFatCalculator"),      { ssr: false }),
+  "sleep-calculator":         dynamic(() => import("@/components/tools/SleepCalculator"),         { ssr: false }),
+  "water-intake-calculator":  dynamic(() => import("@/components/tools/WaterIntakeCalculator"),   { ssr: false }),
+  "ovulation-calculator":     dynamic(() => import("@/components/tools/OvulationCalculator"),     { ssr: false }),
+
+  // Finance (Phase 3)
+  "retirement-calculator":    dynamic(() => import("@/components/tools/RetirementCalculator"),    { ssr: false }),
+  "tax-bracket-calculator":   dynamic(() => import("@/components/tools/TaxBracketCalculator"),    { ssr: false }),
+  "credit-card-payoff":       dynamic(() => import("@/components/tools/CreditCardPayoff"),        { ssr: false }),
+  "inflation-calculator":     dynamic(() => import("@/components/tools/InflationCalculator"),     { ssr: false }),
+
+  // Text (Phase 3)
+  "duplicate-remover":dynamic(() => import("@/components/tools/DuplicateRemover"), { ssr: false }),
+  "line-sorter":      dynamic(() => import("@/components/tools/LineSorter"),       { ssr: false }),
+  "fancy-text":       dynamic(() => import("@/components/tools/FancyText"),        { ssr: false }),
+  "text-to-speech":   dynamic(() => import("@/components/tools/TextToSpeech"),     { ssr: false }),
 };
 
 interface ToolRendererProps {
