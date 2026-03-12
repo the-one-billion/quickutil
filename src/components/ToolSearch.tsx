@@ -65,7 +65,8 @@ export default function ToolSearch() {
           onFocus={() => setOpen(true)}
           onKeyDown={handleKeyDown}
           placeholder={`Search ${tools.length}+ tools… e.g. compress PDF, word count`}
-          className="w-full rounded-xl border border-border bg-background/90 py-3.5 pl-11 pr-4 text-sm shadow-sm outline-none ring-offset-background focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-muted-foreground"
+          className={`w-full border border-border py-3.5 pl-11 pr-4 text-sm shadow-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-muted-foreground ${open && results.length > 0 ? "rounded-t-xl rounded-b-none" : "rounded-xl"}`}
+          style={{ backgroundColor: "hsl(var(--background))" }}
           aria-label="Search tools"
           aria-autocomplete="list"
           aria-expanded={open && results.length > 0}
@@ -77,7 +78,8 @@ export default function ToolSearch() {
       {/* Autocomplete dropdown */}
       {open && results.length > 0 && (
         <div
-          className="absolute top-full left-0 right-0 z-50 mt-1.5 rounded-xl border border-border bg-popover shadow-xl overflow-hidden"
+          className="absolute top-full left-0 right-0 z-50 rounded-b-xl border border-t-0 border-border overflow-hidden shadow-xl"
+          style={{ backgroundColor: "hsl(var(--background))" }}
           role="listbox"
         >
           {results.map((tool, i) => (
