@@ -36,10 +36,12 @@ export const metadata: Metadata = {
     template: "%s | QuickUtil",
   },
   description:
-    "40+ free browser-based tools: PDF merge, image compress, BMI calculator, QR generator, and more. No upload, 100% private.",
+    "112+ free browser-based tools: PDF merge, image compress, JSON formatter, password generator, mortgage calculator, and more. No upload, 100% private — the SmallPDF alternative.",
   keywords: [
     "free online tools", "pdf merge", "image compressor", "bmi calculator",
     "qr code generator", "unit converter", "word counter", "password generator",
+    "json formatter", "jwt decoder", "smallpdf alternative", "tinywow alternative",
+    "browser based tools", "no upload tools", "client side tools",
   ],
   authors: [{ name: "QuickUtil" }],
   openGraph: {
@@ -47,14 +49,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://quickutil.io",
     siteName: "QuickUtil",
-    title: "QuickUtil – 40+ Free Browser Tools",
-    description: "PDF, Image, Calculator & more — 100% client-side, no uploads needed.",
+    title: "QuickUtil – 112+ Free Browser Tools. No Upload.",
+    description: "PDF, image, developer, finance, health tools — 100% client-side. Your files never leave your browser.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "QuickUtil – Free Online Tools",
-    description: "PDF, Image, Calculator & more — 100% client-side, no uploads needed.",
+    title: "QuickUtil – 112+ Free Browser Tools. No Upload.",
+    description: "PDF, image, developer, finance, health tools — 100% client-side. Your files never leave your browser.",
     images: ["/og-image.png"],
   },
   manifest: "/manifest.json",
