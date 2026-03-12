@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Manrope, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import Navigation from "@/components/Navigation";
+import Script from "next/script";
 import "./globals.css";
 
 // Primary UI font — labels, buttons, body text
@@ -82,17 +83,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Google Analytics GA4 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HRZ61PLE02" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-HRZ61PLE02');`,
-          }}
-        />
-        {/* Google AdSense — uncomment and replace ca-pub-XXXXXXXX when approved */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5463169058698651" crossOrigin="anonymous" />
-      </head>
       <body className={`${inter.variable} ${manrope.variable} ${jetbrains.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col">
@@ -115,6 +105,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
           </div>
         </ThemeProvider>
+
+        {/* Google Analytics GA4 */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-HRZ61PLE02" strategy="afterInteractive" />
+        <Script id="ga-init" strategy="afterInteractive">{`
+          window.dataLayer=window.dataLayer||[];
+          function gtag(){dataLayer.push(arguments)}
+          gtag('js',new Date());
+          gtag('config','G-HRZ61PLE02');
+        `}</Script>
+
+        {/* Google AdSense */}
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5463169058698651"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );
