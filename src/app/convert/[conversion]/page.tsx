@@ -168,6 +168,17 @@ export default async function ConversionPage({
     })),
   };
 
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to convert ${pair.fromName} to ${pair.toName}`,
+    step: [
+      { "@type": "HowToStep", text: `Enter your value in ${pair.fromName} (${pair.fromSymbol}) in the input field above.` },
+      { "@type": "HowToStep", text: `Apply the formula: ${pair.formula}` },
+      { "@type": "HowToStep", text: `Read the result in ${pair.toName} (${pair.toSymbol}) from the output field, then click Copy to save it.` },
+    ],
+  };
+
   return (
     <>
       {/* Structured data */}
@@ -182,6 +193,10 @@ export default async function ConversionPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
 
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
